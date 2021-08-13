@@ -7,9 +7,9 @@ from datetime import datetime
 @fixture
 def app():
     try:
-        return __import__("flask_routes").app
+        return __import__("app").app
     except ModuleNotFoundError:
-        fail("Verifique se o nome do arquivo é `flask_routes`")
+        fail("Verifique se o nome do arquivo é `app`")
     except AttributeError:
         fail("Verifique se a instancia de Flask eh `app`")
 
@@ -37,7 +37,7 @@ def test_verify_if_route_home_was_defined(route_matcher):
 
 def test_verify_is_getting_from_home_route(client: FlaskClient):
     response = client.get("/")
-    expected = {"data": "Hello Flask"}
+    expected = {"data": "Hello Flask!"}
 
     assert response.status_code == 200
     assert response.json == expected
@@ -49,6 +49,7 @@ def test_verify_is_getting_from_datetime_route(client: FlaskClient):
     curr_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S %p")
     curr_hour = datetime.now().hour
     msg = "Boa noite!"
+
     if curr_hour < 12:
         msg = "Bom dia!"
 
