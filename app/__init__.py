@@ -18,7 +18,7 @@ def current_time():
     date = gmtime(time())
     if date[3] > 0 and date[3] < 12:
         return {
-            'current_datetime': f'{date[2]}/{date[1]}/{date[0]} {date[3]}:{date[4]}:{date[5]} AM',
+            'current_datetime': f'{date[2]}/{date[1]}/{date[0]} {date[3]-3}:{date[4]}:{date[5]} AM',
             'message': 'Bom dia!'
         }
     if date[3] > 12:
