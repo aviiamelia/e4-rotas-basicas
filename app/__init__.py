@@ -17,21 +17,21 @@ def current_time():
     message = ''
     now = datetime.now()  # current date and time
     time = now.strftime("%H:%M:%S")
-    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
+    date_time = now.strftime("%d/%m/%Y %H:%M:%S")
 
     if int(time[:2]) > 0 and int(time[:2]) < 12:
         return {
-            'current_datetime': f'{date_time[:10]} {date_time[12:20]} AM',
+            'current_datetime': f'{date_time} AM',
             'message': 'Bom dia!'
         }
     elif int(time[:2]) > 12:
         return {
-            'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
+            'current_datetime': f'{date_time} PM',
             'message': 'Boa tarde!'
         }
     elif int(time[:2]) >= 18:
         return {
-            'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
+            'current_datetime': f'{date_time} PM',
             'message': 'Boa noite!'
         }
 
