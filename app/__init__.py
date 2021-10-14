@@ -1,5 +1,5 @@
 from flask import Flask
-from time import gmtime, time
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -15,17 +15,25 @@ def home():
 def current_time():
     # (tm_year=2021, tm_mon=10, tm_mday=13, tm_hour=17, tm_min=21, tm_sec=4, tm_wday=2, tm_yday=286, tm_isdst=0)
     message = ''
-    date = gmtime(time())
-    if date[3] > 0 and date[3] < 12:
+    now = datetime.now()  # current date and time
+    time = now.strftime("%H:%M:%S")
+    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
+
+    if int(time[:2]) > 0 and int(time[:2]) < 12:
         return {
-            'current_datetime': f'{date[2]}/{date[1]}/{date[0]} {date[3]-3}:{date[4]}:{date[5]} AM',
+            'current_datetime': f'{date_time[:10]} {date_time[12:20]} AM',
             'message': 'Bom dia!'
         }
-    if date[3] > 12:
+    elif int(time[:2]) > 12:
         return {
-            'current_datetime': f'{date[2]}/{date[1]}/{date[0]} {date[3]-3}:{date[4]}:{date[5]} PM',
+            'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
             'message': 'Boa tarde!'
+        }
+    elif int(time[:2]) > 18:
+        return {
+            'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
+            'message': 'Boa noite!'
         }
 
 
-print(current_time())
+current_time()
