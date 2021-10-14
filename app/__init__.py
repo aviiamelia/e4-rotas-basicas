@@ -29,7 +29,7 @@ def current_time():
             'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
             'message': 'Boa tarde!'
         }
-    elif int(time[:2]) > 18:
+    elif int(time[:2]) >= 18:
         return {
             'current_datetime': f'{date_time[:10]} {date_time[12:20]} PM',
             'message': 'Boa noite!'
